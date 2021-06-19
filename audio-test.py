@@ -4,17 +4,36 @@ from io import BytesIO
 from random import randint, choice
 from PIL import Image, ImageFont, ImageDraw
 from textwrap import wrap
+import os
+from telethon.sync import TelegramClient
+from telethon import TelegramClient, events, sync
+from telethon import functions,types
+from time import sleep
 
-class AudioMeme(loader.Module):
-    #.audio
-    strings = {
-		"name": "audio-meme"
-	}
+bot = "NewSession"
+api_id = 6600577
+api_hash = 8c7460dc8d98c68d9a93c5e3da5a002c
+client = TelegramClient(bot,api_id,api_hash)
+client.start()
+@client.on(event.NewMessage)
+async def my_event_handler(event):
+    if event.raw_text == "test":
+        await event.edit("Прослушивание сообщения")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения.")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения..")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения...")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения.")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения..")
+        sleep(1.0)
+        await event.edit("Прослушивание сообщения...")
+        sleep(1.0)
+        await event.edit("Пользователь установил ограничения на получение аудио сообщений." + "\n" + "\n" + "<b>Сообщение не доставлено.</b>")
 
-	async def client_ready(self, client, db):
-		self.client = client
-
-    @loader.owner
-	async def audiom(self, message):
-        if event.raw_text == ".taudio":
-            await await message.edit("test")
+client.run_until_disconnected()
